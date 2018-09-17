@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Unit Table</title>
+</head>
+<body>
+  <div>
+    <form method="POST" action="/form_test">
+      {{ form.csrf_token }}
+      {{ form.UNIT_SN.label }} {{ form.UNIT_SN(size=20) }}
+      {{ form.DATE_CODE.label }} {{ form.DATE_CODE(size=20) }}
+      {{ form.MODEL.label }} {{ form.MODEL(size=20) }}
+      {{ form.COMM_TYPE.label }} {{ form.COMM_TYPE(size=20) }}
+      {{ form.QA_USER.label }} {{ form.QA_USER(size=20) }}
+      {{ form.SALES_ORDER.label }} {{ form.SALES_ORDER(size=20) }}
+      {{ form.MC_SN.label }} {{ form.MC_SN(size=20) }}
+      <input type="submit" value="Go">
+    </form>
+  </div>
+</body>
+</html>

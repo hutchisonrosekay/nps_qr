@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>UNIT | NPS QR</title>
+</head>
+<body>
+  <div>
+    <table border="1">
+      <tr>
+        <th>Serial Number</th>
+        <th>Date Code</th>
+        <th>Model</th>
+        <th>Comm. Type</th>
+        <th>Final Qual. Inspector</th>
+        <th>Sales Order</th>
+        <th>Master Controller SN</th>
+      </tr>
+      {% for un in unit %}
+      <tr>
+        <td>{{ un.UNIT_SN}}</td>
+        <td>{{ un.DATE_CODE }}</td>
+        <td>{{ un.MODEL}}</td>
+        <td>{{ un.COMM_TYPE}}</td>
+        <td>{{ un.QA_USER }}</td>
+        <td>{{ un.SALES_ORDER }}</td>
+        <td>{{ un.MC_SN }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</body>
+</html>

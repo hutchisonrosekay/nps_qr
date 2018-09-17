@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>NPS QR | Units</title>
+  <body>
+    <div>
+      <ul>
+        {% for unit in units %}
+        <li>Unit SN: {{unit.unit_sn}}</li>
+        <li>Sales Order: {{unit.sales_order}}</li>
+        <li>Model: {{unit.model}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </body>
+</html>
