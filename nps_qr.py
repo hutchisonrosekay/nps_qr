@@ -1,10 +1,12 @@
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
-from wtforms import Form, BooleanField, StringField, PasswordField, IntegerField, validators
+from wtforms import Form, BooleanField, StringField, PasswordField, IntegerField, DateField, validators
+
+import time
 
 nps_qr = Flask(__name__)
-nps_qr.config['SQLALCHEMY_DATABASE_URI'] ='postgresql://postgres:Swingline5!@localhost:5432/nps_qr'
+nps_qr.config['SQLALCHEMY_DATABASE_URI'] ='postgresql://joeystempky:postgres@localhost:5432/nps_qr'
 nps_qr.secret_key = b'testkey5!'
 db = SQLAlchemy(nps_qr)
 db.create_all()
@@ -139,12 +141,36 @@ class Six_low(db.Model):
 
 FORMS -->  Needs to be moved to its own file/folder eventually
 """
+class New_User_Form(Form):
+    user_id= IntegerField('User ID')
+    email = StringField('Email')
+    f_name = StringField('First Name')
+    l_name = StringField('Last Name')
+    password = StringField('Password')
 
 class New_Unit_Form(Form):
     unit_sn = IntegerField('Unit Serial Number')
     sales_order = IntegerField('Sales Order Number')
     model = StringField('Model')
 
+class New_Project_Form(Form):
+    sales_order = IntegerField('Sales Order Number')
+    so_desc = StringField(' Sales Order Description')
+    so_date = DateField('Date')
+    exp_date = DateField('Expected Ship Date')
+    nps_contact = StringField('NPS Sales Contact')
+    ship_addy = StringField('Address')
+    ship_city = StringField('City')
+    ship_state = StringField('State')
+    ship_zip = StringField('Zip')
+    ship_country = StringField('Country')
+
+
+    ship_inspector = db.Column(db.String)
+    ship_country = db.Column(db.String)
+    customer = db.Column(db.String)
+    ship_inspect_date =  db.Column(db.Date)
+    ship_style = db.Column(db.String)
 
 """
 
@@ -153,7 +179,13 @@ VIEWS -->  Break out into separate files
 # Homepage
 @nps_qr.route('/')
 def home():
-    return "Welcome to the Thunderdome, bitch."
+    print ("Welcome to the Thunderdome, bitch. \n \n Sign-Up form, sign-in form, forgot password")
+    return redirect(url_for('welcome'))
+
+@nps_qr.route('/welcome')
+def welcome():
+    form = New_User_Form(request.form)
+    return render_template('login.html', form=form)
 
 # Create a new user
 @nps_qr.route('/new_user', methods=['GET', 'POST'])

@@ -1,16 +1,16 @@
-<html>
-  <title>{{ app_name }} | Login</title>
-  <head>Welcome to {{ app_name }}!</head>
-  <body>
-    <h1>Login</h1>
-    <div>
-      <p></p>
-      <ul>
-        <li>Username</li>
-        <li>Password</li>
-        <li>Sign up here!</li>
-        <li>Forgot password?</li>
-      </ul>
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Welcome!  Login to your account!</h1>
+  {% from "includes/_formhelpers.html" import render_field %}
+  <form method="POST" action"">
+    <div class="form-group">
+      {{render_field(form.email, class_="form-control")}}
     </div>
-  </body>
-</html>
+    <div class="form-group">
+      {{render_field(form.password, class_="form-control")}}
+    </div>
+    <p><input type="submit" class="btn btn-primary" value="Beastmode!"</p>
+    <div><p>Need to figure out login mechanism</p></div>
+  </form>
+{% endblock %}
